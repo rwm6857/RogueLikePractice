@@ -17,7 +17,7 @@ import asciiPanel.AsciiPanel;
  */
 public class ApplicationMain extends JFrame {
     /**
-     * serial version UID
+     * helps to prevent faliues when serializing different class versions
      */
     private static final long serialVersionUID = 1060623638149583738L;
     /**
