@@ -16,10 +16,18 @@ import asciiPanel.AsciiPanel;
  * @author rwm6857 (Ryan Moore)
  */
 public class ApplicationMain extends JFrame {
+    /**
+     * serial version UID
+     */
     private static final long serialVersionUID = 1060623638149583738L;
-
+    /**
+     * terminal window to display the game info
+     */
     private AsciiPanel terminal;
 
+    /**
+     * creates the ApplicationMain window
+     */
     public ApplicationMain() {
         super();
         terminal = new AsciiPanel();
@@ -28,7 +36,12 @@ public class ApplicationMain extends JFrame {
         pack();
     }
 
-    public static void main(String[] arg) {
+    /**
+     * main function, instantiates ApplicationMean and delegates input
+     *
+     * @param args command-line arguements
+     */
+    public static void main(String[] args) {
         ApplicationMain app = new ApplicationMain();
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.setVisible(true);
