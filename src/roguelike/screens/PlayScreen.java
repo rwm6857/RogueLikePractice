@@ -1,6 +1,8 @@
 package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
+import roguelike.World;
+import roguelike.WorldBuilder;
 
 import java.awt.event.KeyEvent;
 
@@ -12,6 +14,45 @@ import java.awt.event.KeyEvent;
  * @author rwm6857
  */
 public class PlayScreen implements Screen {
+    /**
+     * generated world
+     */
+    private World world;
+    /**
+     * center of the screen horizontally
+     */
+    private int centerX;
+    /**
+     * center of the screen vertically
+     */
+    private int centerY;
+    /**
+     * width of the screen
+     */
+    private int screenWidth;
+    /**
+     * height of the sceen
+     */
+    private int screenHeight;
+
+    /**
+     * constructor for a PlayScreen
+     */
+    public PlayScreen() {
+        screenWidth = 80;
+        screenHeight = 21;
+        createWorld();
+    }
+
+    /**
+     * creates a new World using the World builder
+     */
+    private void createWorld() {
+        world = new WorldBuilder(90, 31)
+                .makeCaves()
+                .build();
+    }
+
     /**
      * displays gameplay on the terminal
      *
