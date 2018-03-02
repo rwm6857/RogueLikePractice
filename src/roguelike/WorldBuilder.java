@@ -85,4 +85,12 @@ public class WorldBuilder {
         }
         return this;
     }
+
+    /**
+     * makes the caves
+     * @return tiles after being randomized and smoothed
+     */
+    public WorldBuilder makeCaves() {
+        return randomizeTiles().smooth(8);
+    }
 }
