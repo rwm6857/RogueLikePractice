@@ -67,7 +67,7 @@ public class Creature {
      *
      * @param ai the AI that controls the creature
      */
-    private void setCreatureAi(CreatureAi ai) {
+    public void setCreatureAi(CreatureAi ai) {
         this.ai = ai;
     }
 
@@ -79,5 +79,15 @@ public class Creature {
      */
     public void dig(int wx, int wy) {
         world.dig(wx, wy);
+    }
+
+    /**
+     * allows creatures to move in the world dependant on AI
+     *
+     * @param mx max x
+     * @param my max y
+     */
+    public void moveBy(int mx, int my) {
+        ai.onEnter(x + mx, y + my, world.tile(x + mx, y + my));
     }
 }
