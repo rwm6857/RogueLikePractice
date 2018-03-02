@@ -38,7 +38,7 @@ public class World {
      * @return width
      */
     public int width() {
-        return width;
+        return this.width;
     }
 
     /**
@@ -47,7 +47,7 @@ public class World {
      * @return height
      */
     public int height() {
-        return height;
+        return this.height;
     }
 
     /**
@@ -61,7 +61,7 @@ public class World {
         if (x < 0 || x >= width || y < 0 || y >= height)
             return Tile.BOUNDS;
         else
-            return tiles[x][y];
+            return this.tiles[x][y];
     }
 
     /**
@@ -84,6 +84,17 @@ public class World {
      */
     public Color color(int x, int y) {
         return tile(x, y).color();
+    }
+
+    /**
+     * checks if the wall is diggable and turns to FLOOR if it is
+     *
+     * @param x x position
+     * @param y y position
+     */
+    public void dig(int x, int y) {
+        if (tile(x, y).isDiggable())
+            tiles[x][y] = Tile.FLOOR;
     }
 }
 
