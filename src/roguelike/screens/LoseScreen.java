@@ -5,27 +5,26 @@ import asciiPanel.AsciiPanel;
 import java.awt.event.KeyEvent;
 
 /**
- * Provides the starting screen for the game
- * Puts user in "play mode" after hitting enter
+ * Displays the losing screen and asks user if they would like to play again
  *
  * @author rwm6857
  */
-public class StartScreen implements Screen {
+public class LoseScreen implements Screen {
     /**
-     * Prints the opening message for the StartScreen
+     * displays the lose messages and asks user to replay
      *
      * @param terminal the AsciiPanel to deliver output
      */
     public void displayOutput(AsciiPanel terminal) {
-        terminal.write("RogueLike Tutorial", 1, 1);
-        terminal.writeCenter("~~ Press [ENTER] to start ~~", 22);
+        terminal.write("You lost.", 1, 1);
+        terminal.writeCenter("-- press [enter] to restart --", 22);
     }
 
     /**
-     * Invokes the PlayScreen when the user hits enter
+     * restarts if the user hits enter
      *
      * @param key value that triggers an event
-     * @return a new PlayScreen
+     * @return new PlayScreen
      */
     public Screen respondToUserInput(KeyEvent key) {
         return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;

@@ -8,10 +8,13 @@ import java.awt.event.KeyEvent;
  * Shows dungeon, inhabitants, and loot
  * Responds to player input by moving
  * Sets in "win" or "lose" mode as necessary
+ *
+ * @author rwm6857
  */
-public class PlayScreen implements Screen{
+public class PlayScreen implements Screen {
     /**
      * displays gameplay on the terminal
+     *
      * @param terminal the AsciiPanel to deliver output
      */
     public void displayOutput(AsciiPanel terminal) {
@@ -21,13 +24,16 @@ public class PlayScreen implements Screen{
 
     /**
      * lose if the user hits escape, win if the user hits enter
+     *
      * @param key value that triggers an event
      * @return WinScreen or LoseScreen
      */
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE: return new LoseScreen();
-            case KeyEvent.VK_ENTER: return new WinScreen();
+            case KeyEvent.VK_ESCAPE:
+                return new LoseScreen();
+            case KeyEvent.VK_ENTER:
+                return new WinScreen();
         }
         return this;
     }
