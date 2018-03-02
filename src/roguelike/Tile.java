@@ -52,4 +52,13 @@ public enum Tile {
         this.glyph = glyph;
         this.color = color;
     }
+
+    /**
+     * checks if a wall is diggable
+     *
+     * @return true if tile is a WALL, false otherwise
+     */
+    public boolean isDiggable() {
+        return this == Tile.WALL;
+    }
 }
