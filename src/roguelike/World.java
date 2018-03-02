@@ -3,7 +3,7 @@ package roguelike;
 import java.awt.Color;
 
 /**
- * Creates the world and gives access to it's attributes
+ * Creates/runs the world and gives access to it's attributes
  *
  * @author rwm6857
  */
