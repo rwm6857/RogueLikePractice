@@ -31,7 +31,7 @@ public class PlayScreen implements Screen {
      */
     private int screenWidth;
     /**
-     * height of the sceen
+     * height of the screen
      */
     private int screenHeight;
 
@@ -48,9 +48,7 @@ public class PlayScreen implements Screen {
      * creates a new World using the World builder
      */
     private void createWorld() {
-        world = new WorldBuilder(90, 31)
-                .makeCaves()
-                .build();
+        world = new WorldBuilder(90, 31).makeCaves().build();
     }
 
     /**
