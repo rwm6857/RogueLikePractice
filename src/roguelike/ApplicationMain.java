@@ -95,5 +95,4 @@ public class ApplicationMain extends JFrame implements KeyListener {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.setVisible(true);
     }
-
 }

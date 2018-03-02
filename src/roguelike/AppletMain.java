@@ -1,15 +1,21 @@
 package roguelike;
 
 import java.applet.Applet;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import asciiPanel.AsciiPanel;
+import roguelike.screens.Screen;
+import roguelike.screens.StartScreen;
+
+import javax.swing.*;
 
 /**
  * Allows the game to run from users' browser
  *
  * @author rwm6857 (Ryan Moore)
  */
-public class AppletMain extends Applet {
+public class AppletMain extends Applet implements KeyListener {
     /**
      * helps to prevent faliues when serializing different class versions
      */
@@ -18,6 +24,10 @@ public class AppletMain extends Applet {
      * terminal window to display the game info
      */
     private AsciiPanel terminal;
+    /**
+     * current game screen class
+     */
+    private Screen screen;
 
     /**
      * instantiates an AppletMain so the game can be run in a browser
@@ -27,6 +37,9 @@ public class AppletMain extends Applet {
         terminal = new AsciiPanel();
         terminal.write("RogueLike Tutorial", 1, 1);
         add(terminal);
+        screen = new StartScreen();
+        addKeyListener(this);
+        repaint();
     }
 
     /**
@@ -45,5 +58,41 @@ public class AppletMain extends Applet {
         terminal.repaint();
     }
 
+    /**
+     * checks if key is pressed and repaints screen
+     *
+     * @param e key event code
+     */
+    public void keyPressed(KeyEvent e) {
+        screen = screen.respondToUserInput(e);
+        repaint();
+    }
+
+    /**
+     * checks if key is released
+     *
+     * @param e key event code
+     */
+    public void keyReleased(KeyEvent e) {
+    }
+
+    /**
+     * checks if key is typed
+     *
+     * @param e key event code
+     */
+    public void keyTyped(KeyEvent e) {
+    }
+
+    /**
+     * main method for AppletMain
+     *
+     * @param args command-line arguments
+     */
+    public static void main(String[] args) {
+        ApplicationMain app = new ApplicationMain();
+        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        app.setVisible(true);
+    }
 
 }
