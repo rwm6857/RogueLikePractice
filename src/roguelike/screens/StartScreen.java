@@ -23,9 +23,9 @@ public class StartScreen implements Screen {
      * Invokes the PlayScreen when the user hits enter
      *
      * @param key value that triggers an event
-     * @return
+     * @return a new PlayScreen
      */
     public Screen respondToUserInput(KeyEvent key) {
-        return key.getKeyCode() == KeyEvent.VK_ENTER ? PlayScreen() : this;
+        return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
     }
 }
