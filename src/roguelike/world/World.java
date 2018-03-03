@@ -1,6 +1,9 @@
-package roguelike;
+package roguelike.world;
+
+import roguelike.creatures.Creature;
 
 import java.awt.Color;
+import java.util.List;
 
 /**
  * Creates/runs the world and gives access to it's attributes
@@ -20,6 +23,10 @@ public class World {
      * height of world
      */
     private int height;
+    /**
+     * list containing the world's monsters
+     */
+    private List<Creature> creatures;
 
     /**
      * constructor for the World
@@ -102,18 +109,34 @@ public class World {
      *
      * @param creature creature to be added
      */
-    public void addAtEmptyLocation(Creature creature) {
+    public void addAtEmptyLocation(Creature creature){
         int x;
         int y;
 
         do {
-            x = (int) (Math.random() * width);
-            y = (int) (Math.random() * height);
+            x = (int)(Math.random() * width);
+            y = (int)(Math.random() * height);
         }
-        while (!tile(x, y).isGround());
+        while (!tile(x,y).isGround() || creature(x,y) != null);
 
         creature.x = x;
         creature.y = y;
+        creatures.add(creature);
+    }
+
+    /**
+     * gets a creature at a specific location
+     *
+     * @param x x position
+     * @param y y position
+     * @return creature at (x,y)
+     */
+    public Creature creature(int x, int y) {
+        for (Creature c : creatures) {
+            if (c.x == x && c.y == y)
+                return c;
+        }
+        return null;
     }
 }
 

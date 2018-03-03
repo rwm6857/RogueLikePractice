@@ -1,4 +1,6 @@
-package roguelike;
+package roguelike.creatures;
+
+import roguelike.world.Tile;
 
 /**
  * Artificial intelligence for a creature

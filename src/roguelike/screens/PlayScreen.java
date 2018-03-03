@@ -1,10 +1,10 @@
 package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
-import roguelike.Creature;
-import roguelike.CreatureFactory;
-import roguelike.World;
-import roguelike.WorldBuilder;
+import roguelike.creatures.Creature;
+import roguelike.creatures.CreatureFactory;
+import roguelike.world.World;
+import roguelike.world.WorldBuilder;
 
 import java.awt.event.KeyEvent;
 
@@ -56,12 +56,16 @@ public class PlayScreen implements Screen {
      * @param top      top most position
      */
     private void displayTiles(AsciiPanel terminal, int left, int top) {
-        for (int x = 0; x < screenWidth; x++) {
-            for (int y = 0; y < screenHeight; y++) {
+        for (int x = 0; x < screenWidth; x++){
+            for (int y = 0; y < screenHeight; y++){
                 int wx = x + left;
                 int wy = y + top;
 
-                terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+                Creature creature = world.creature(wx, wy);
+                if (creature != null)
+                    terminal.write(creature.glyph(), creature.x - left, creature.y - top, creature.color());
+                else
+                    terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
             }
         }
     }

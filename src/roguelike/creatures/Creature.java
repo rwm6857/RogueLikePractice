@@ -1,4 +1,6 @@
-package roguelike;
+package roguelike.creatures;
+
+import roguelike.world.World;
 
 import java.awt.Color;
 

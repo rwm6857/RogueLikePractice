@@ -1,4 +1,4 @@
-package roguelike;
+package roguelike.world;
 
 /**
  * Actually builds the world that is used by the World class

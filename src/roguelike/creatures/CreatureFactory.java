@@ -1,6 +1,7 @@
-package roguelike;
+package roguelike.creatures;
 
 import asciiPanel.AsciiPanel;
+import roguelike.world.World;
 
 /**
  * creates all the creatures for a world
