@@ -32,13 +32,16 @@ public class PlayScreen implements Screen {
 
     /**
      * constructor for a PlayScreen
+     * creates the world
+     * populates world
      */
     public PlayScreen() {
         screenWidth = 80;
         screenHeight = 21;
         createWorld();
+
         CreatureFactory creatureFactory = new CreatureFactory(world);
-        player = creatureFactory.newPlayer();
+        createCreatures(creatureFactory);
     }
 
     /**
@@ -49,6 +52,19 @@ public class PlayScreen implements Screen {
     }
 
     /**
+     * populates the world with creatures based on the factory rules
+     *
+     * @param creatureFactory the creature object factory
+     */
+    private void createCreatures(CreatureFactory creatureFactory) {
+        player = creatureFactory.newPlayer();
+
+        for (int i = 0; i < 8; i++) {
+            creatureFactory.newFungus();
+        }
+    }
+
+    /**
      * displays tiles on the terminal
      *
      * @param terminal terminal window
@@ -56,8 +72,8 @@ public class PlayScreen implements Screen {
      * @param top      top most position
      */
     private void displayTiles(AsciiPanel terminal, int left, int top) {
-        for (int x = 0; x < screenWidth; x++){
-            for (int y = 0; y < screenHeight; y++){
+        for (int x = 0; x < screenWidth; x++) {
+            for (int y = 0; y < screenHeight; y++) {
                 int wx = x + left;
                 int wy = y + top;
 

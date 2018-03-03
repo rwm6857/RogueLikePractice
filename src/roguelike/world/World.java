@@ -3,6 +3,7 @@ package roguelike.world;
 import roguelike.creatures.Creature;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +38,7 @@ public class World {
         this.tiles = tiles;
         this.width = tiles.length;
         this.height = tiles[0].length;
+        this.creatures = new ArrayList<Creature>();
     }
 
     /**
