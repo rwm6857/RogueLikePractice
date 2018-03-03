@@ -111,15 +111,15 @@ public class World {
      *
      * @param creature creature to be added
      */
-    public void addAtEmptyLocation(Creature creature){
+    public void addAtEmptyLocation(Creature creature) {
         int x;
         int y;
 
         do {
-            x = (int)(Math.random() * width);
-            y = (int)(Math.random() * height);
+            x = (int) (Math.random() * width);
+            y = (int) (Math.random() * height);
         }
-        while (!tile(x,y).isGround() || creature(x,y) != null);
+        while (!tile(x, y).isGround() || creature(x, y) != null);
 
         creature.x = x;
         creature.y = y;
@@ -139,6 +139,15 @@ public class World {
                 return c;
         }
         return null;
+    }
+
+    /**
+     * removes a creature from the world
+     *
+     * @param other creature to be removed
+     */
+    public void remove(Creature other) {
+        creatures.remove(other);
     }
 }
 

@@ -85,11 +85,26 @@ public class Creature {
 
     /**
      * allows creatures to move in the world dependant on AI
+     * if enemy is present, attack
      *
      * @param mx max x
      * @param my max y
      */
     public void moveBy(int mx, int my) {
-        ai.onEnter(x + mx, y + my, world.tile(x + mx, y + my));
+        Creature other = world.creature(x + mx, y + my);
+
+        if (other == null)
+            ai.onEnter(x + mx, y + my, world.tile(x + mx, y + my));
+        else
+            attack(other);
+    }
+
+    /**
+     * attack the creature by simply removing it
+     *
+     * @param other creature being attacked
+     */
+    public void attack(Creature other) {
+        world.remove(other);
     }
 }
