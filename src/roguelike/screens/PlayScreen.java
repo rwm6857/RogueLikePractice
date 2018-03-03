@@ -1,6 +1,8 @@
 package roguelike.screens;
 
 import asciiPanel.AsciiPanel;
+import roguelike.Creature;
+import roguelike.CreatureFactory;
 import roguelike.World;
 import roguelike.WorldBuilder;
 
@@ -34,6 +36,10 @@ public class PlayScreen implements Screen {
      * height of the screen
      */
     private int screenHeight;
+    /**
+     * player for the game
+     */
+    private Creature player;
 
     /**
      * constructor for a PlayScreen
@@ -42,6 +48,8 @@ public class PlayScreen implements Screen {
         screenWidth = 80;
         screenHeight = 21;
         createWorld();
+        CreatureFactory creatureFactory = new CreatureFactory(world);
+        player = creatureFactory.newPlayer();
     }
 
     /**
@@ -79,7 +87,7 @@ public class PlayScreen implements Screen {
         int top = getScrollY();
 
         displayTiles(terminal, left, top);
-        terminal.write('X', centerX - left, centerY - top);
+        terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 
         terminal.write("You are having fun.", 1, 1);
         terminal.writeCenter(" ~~ press [ESC] to lose or [ENTER] to win ~~", 22);

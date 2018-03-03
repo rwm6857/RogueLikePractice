@@ -2,6 +2,11 @@ package roguelike;
 
 import asciiPanel.AsciiPanel;
 
+/**
+ * creates all the creatures for a world
+ *
+ * @author rwm6857
+ */
 public class CreatureFactory {
     /**
      * world creatures are created in
