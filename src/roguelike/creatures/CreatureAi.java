@@ -30,4 +30,10 @@ public class CreatureAi {
      */
     public void onEnter(int x, int y, Tile tile) {
     }
+
+    /**
+     * used to update the AI
+     */
+    public void onUpdate() {
+    }
 }

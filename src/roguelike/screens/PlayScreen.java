@@ -143,6 +143,7 @@ public class PlayScreen implements Screen {
                 player.moveBy(1, 1);
                 break;
         }
+        world.update();
         return this;
     }
 

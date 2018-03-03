@@ -149,5 +149,15 @@ public class World {
     public void remove(Creature other) {
         creatures.remove(other);
     }
+
+    /**
+     * updates the creatures based on their AI
+     */
+    public void update(){
+        List<Creature> toUpdate = new ArrayList<Creature>(creatures);
+        for (Creature creature : toUpdate){
+            creature.update();
+        }
+    }
 }
 
