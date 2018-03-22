@@ -43,7 +43,7 @@ public class CreatureFactory {
      * @return new Fungus
      */
     public Creature newFungus() {
-        Creature fungus = new Creature(world, 'f', AsciiPanel.green, 10, 0, 0);
+        Creature fungus = new Creature(world, 'f', AsciiPanel.green, 10, 1, 0);
         world.addAtEmptyLocation(fungus);
         new FungusAi(fungus, this);
         return fungus;

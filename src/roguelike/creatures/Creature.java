@@ -129,18 +129,18 @@ public class Creature {
         int amount = Math.max(0, attackValue() - other.defenseValue());
         amount = (int) (Math.random() * amount) + 1;
         other.modifyHp(-amount);
-        notify("You attack the '%s' for %d damage.", other.glyph, amount);
-        other.notify("The '%s' attacks you for %d damage.", glyph, amount);
+        notify("attack the '%s' for %d damage.", other.glyph, amount);
     }
 
     /**
      * modifies the hit points of a Creature
      *
-     * @param amount
+     * @param amount amount of damage
      */
     public void modifyHp(int amount) {
         hp += amount;
         if (hp < 1) {
+            doAction("die");
             this.world.remove(this);
         }
     }
@@ -190,6 +190,7 @@ public class Creature {
 
     /**
      * checks if player can enter tile
+     *
      * @param wx x position
      * @param wy y position
      * @return true if clear, otherwise false
@@ -200,10 +201,57 @@ public class Creature {
 
     /**
      * used to handle messages to PlayerAi
+     *
      * @param message message to be sent
-     * @param params any object
+     * @param params  any object
      */
-    public void notify(String message, Object ... params){
+    public void notify(String message, Object... params) {
         ai.onNotify(message);
     }
+
+    /**
+     * used to interact and update other creatures
+     *
+     * @param message string to be passed on
+     * @param params  any object
+     */
+    public void doAction(String message, Object... params) {
+        int r = 9;
+        for (int ox = -r; ox < r + 1; ox++) {
+            for (int oy = -r; oy < r + 1; oy++) {
+                if (ox * ox + oy * oy > r * r)
+                    continue;
+
+                Creature other = world.creature(x + ox, y + oy);
+
+                if (other == null)
+                    continue;
+
+                if (other == this)
+                    other.notify("You " + message + ".", params);
+                else
+                    other.notify(String.format("The '%s' %s.", glyph, makeSecondPerson(message)), params);
+            }
+        }
+    }
+
+    /**
+     * supports doAction
+     *
+     * @param text message
+     * @return string in second person
+     */
+    private String makeSecondPerson(String text) {
+        String[] words = text.split(" ");
+        words[0] = words[0] + "s";
+
+        StringBuilder builder = new StringBuilder();
+        for (String word : words) {
+            builder.append(" ");
+            builder.append(word);
+        }
+
+        return builder.toString().trim();
+    }
+
 }
