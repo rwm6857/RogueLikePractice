@@ -3,6 +3,8 @@ package roguelike.creatures;
 import asciiPanel.AsciiPanel;
 import roguelike.world.World;
 
+import java.util.List;
+
 /**
  * creates all the creatures for a world
  *
@@ -28,10 +30,10 @@ public class CreatureFactory {
      *
      * @return new player
      */
-    public Creature newPlayer() {
-        Creature player = new Creature(world, '@', AsciiPanel.brightWhite);
+    public Creature newPlayer(List<String> messages) {
+        Creature player = new Creature(world, '@', AsciiPanel.brightWhite, 100, 20, 5);
         world.addAtEmptyLocation(player);
-        new PlayerAi(player);
+        new PlayerAi(player, messages);
         return player;
     }
 
@@ -41,7 +43,7 @@ public class CreatureFactory {
      * @return new Fungus
      */
     public Creature newFungus() {
-        Creature fungus = new Creature(world, 'f', AsciiPanel.green);
+        Creature fungus = new Creature(world, 'f', AsciiPanel.green, 10, 0, 0);
         world.addAtEmptyLocation(fungus);
         new FungusAi(fungus, this);
         return fungus;

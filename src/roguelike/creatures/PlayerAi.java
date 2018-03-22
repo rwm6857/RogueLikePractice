@@ -2,6 +2,8 @@ package roguelike.creatures;
 
 import roguelike.world.Tile;
 
+import java.util.List;
+
 /**
  * creates the AI for the active player
  *
@@ -9,12 +11,27 @@ import roguelike.world.Tile;
  */
 public class PlayerAi extends CreatureAi {
     /**
+     * collection of messages
+     */
+    private List<String> messages;
+
+    /**
      * constructor for the PlayerAI
      *
      * @param creature creature controlled by AI
      */
-    public PlayerAi(Creature creature) {
+    public PlayerAi(Creature creature, List<String> messages) {
         super(creature);
+        this.messages = messages;
+    }
+
+    /**
+     * adds message to message queue
+     *
+     * @param message message to be displayed
+     */
+    public void onNotify(String message) {
+        messages.add(message);
     }
 
     /**

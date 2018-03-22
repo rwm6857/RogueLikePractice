@@ -36,4 +36,11 @@ public class CreatureAi {
      */
     public void onUpdate() {
     }
+
+    /**
+     * used to update messages
+     * @param message string to be added
+     */
+    public void onNotify(String message) {
+    }
 }
