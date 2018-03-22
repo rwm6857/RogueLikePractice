@@ -32,6 +32,22 @@ public class Creature {
      * y position
      */
     public int y;
+    /**
+     * hit points
+     */
+    private int hp;
+    /**
+     * max hit points
+     */
+    private int maxHp;
+    /**
+     * attack power
+     */
+    private int attackValue;
+    /**
+     * defense points
+     */
+    private int defenseValue;
 
     /**
      * constructor for Creature
@@ -100,12 +116,62 @@ public class Creature {
     }
 
     /**
-     * attack the creature by simply removing it
+     * attack the creature by calculating damage and removing it if <1
      *
      * @param other creature being attacked
      */
     public void attack(Creature other) {
-        world.remove(other);
+        int amount = Math.max(0, attackValue() - other.defenseValue());
+        amount = (int) (Math.random() * amount) + 1;
+        other.modifyHp(-amount);
+    }
+
+    /**
+     * modifies the hit points of a Creature
+     *
+     * @param amount
+     */
+    public void modifyHp(int amount) {
+        hp += amount;
+        if (hp < 1) {
+            this.world.remove(this);
+        }
+    }
+
+    /**
+     * get max hp
+     *
+     * @return maxHp
+     */
+    public int maxHp() {
+        return this.maxHp;
+    }
+
+    /**
+     * get current hp
+     *
+     * @return hp
+     */
+    public int hp() {
+        return this.hp;
+    }
+
+    /**
+     * get attack power
+     *
+     * @return attack value
+     */
+    public int attackValue() {
+        return this.attackValue;
+    }
+
+    /**
+     * get defense points
+     *
+     * @return defense value
+     */
+    public int defenseValue() {
+        return this.defenseValue;
     }
 
     /**
